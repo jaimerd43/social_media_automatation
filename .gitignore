@@ -1,0 +1,19 @@
+# Secretos
+.env
+
+# Artefactos generados
+output/*.mp4
+output/*.mp3
+output/*.json
+
+# Node
+pipeline/remotion/node_modules/
+pipeline/remotion/.cache/
+pipeline/remotion/dist/
+pipeline/remotion/public/avatar.mp4
+pipeline/remotion/public/recording.mp4
+
+# Python
+__pycache__/
+*.pyc
+.venv/

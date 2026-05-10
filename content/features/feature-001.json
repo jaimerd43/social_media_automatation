@@ -1,0 +1,12 @@
+{
+  "id": "feature-001",
+  "title": "Búsqueda de torneos por ubicación",
+  "hook": "Encuentra el próximo torneo de mus cerca de ti en segundos",
+  "key_points": [
+    "Filtra torneos por distancia y ciudad",
+    "Ve plazas disponibles en tiempo real",
+    "Inscríbete con un solo toque"
+  ],
+  "cta": "Descarga Órdago y encuentra tu próximo torneo",
+  "recording": "content/recordings/feature-001.mp4"
+}
