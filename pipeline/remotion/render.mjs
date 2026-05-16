@@ -46,21 +46,57 @@ try {
 }
 
 const totalFrames = Math.ceil(durationS * FPS);
-const hookEndFrame = Math.round(script.sections.hook.end * FPS);
-const demoEndFrame = Math.round(script.sections.demo.end * FPS);
+
+// Escalar los timestamps del script a la duración real del vídeo.
+// ElevenLabs puede hablar más rápido o lento que la estimación de palabras/segundo,
+// y HeyGen genera exactamente la duración del audio → los timestamps del script
+// pueden quedar fuera del rango real del vídeo si no se escalan.
+const scale = durationS / script.duration_estimate_s;
+const hookEndFrame = Math.min(
+  Math.round(script.sections.hook.end * scale * FPS),
+  totalFrames - 60  // mínimo 2s para la demo
+);
+const demoEndFrame = Math.min(
+  Math.round(script.sections.demo.end * scale * FPS),
+  totalFrames - 20  // mínimo ~0.7s para el CTA
+);
+
+console.log(`Frames → total: ${totalFrames}  hook: ${hookEndFrame}  demo: ${demoEndFrame}  (escala: ${scale.toFixed(2)}x)`);
 
 const inputProps = { script, hookEndFrame, demoEndFrame, totalFrames };
 
-// ── 2. Copiar vídeos al public/ ──────────────────────────────────────────────
+// ── 2. Preparar vídeos en public/ ───────────────────────────────────────────
 const publicDir = path.join(__dirname, "public");
 fs.mkdirSync(publicDir, { recursive: true });
 
 const avatarDest = path.join(publicDir, "avatar.mp4");
 const recordingDest = path.join(publicDir, "recording.mp4");
 
-console.log("Copiando vídeos al directorio público...");
-fs.copyFileSync(path.resolve(avatarVideoPath), avatarDest);
-fs.copyFileSync(path.resolve(recordingPath), recordingDest);
+const resolvedRecording = path.resolve(recordingPath);
+const isMov = resolvedRecording.toLowerCase().endsWith(".mov");
+
+console.log("Preparando vídeos...");
+
+// Re-codificar avatar con keyframe cada segundo para que Remotion pueda
+// buscar frames exactos sin desincronizar el audio de labios.
+console.log("  Re-codificando avatar (keyframes frecuentes para lip sync)...");
+execSync(
+  `ffmpeg -i "${path.resolve(avatarVideoPath)}" -c:v libx264 -g ${FPS} -keyint_min ${FPS} -sc_threshold 0 -c:a aac -movflags +faststart "${avatarDest}" -y`,
+  { stdio: "pipe" }
+);
+
+if (isMov) {
+  // Chromium no reproduce .MOV de forma fiable → convertir a H.264 mp4.
+  // ffmpeg 8.x aplica automáticamente la rotación del Display Matrix del iPhone,
+  // por lo que NO se necesita -vf transpose. El vídeo de salida ya es portrait.
+  console.log("  Convirtiendo .MOV → .mp4 (H.264, portrait auto-corregido)...");
+  execSync(
+    `ffmpeg -i "${resolvedRecording}" -c:v libx264 -preset fast -crf 18 -c:a aac -movflags +faststart "${recordingDest}" -y`,
+    { stdio: "inherit" }
+  );
+} else {
+  fs.copyFileSync(resolvedRecording, recordingDest);
+}
 
 // ── 3. Bundle + render ───────────────────────────────────────────────────────
 try {
@@ -68,6 +104,7 @@ try {
   const bundleLocation = await bundle({
     entryPoint: path.join(__dirname, "src/index.ts"),
     onProgress: (p) => process.stdout.write(`\r  Bundle: ${p}%  `),
+    cacheEnabled: false,   // siempre rebuild limpio para evitar código cacheado obsoleto
   });
   console.log("\nRenderizando vídeo...");
 

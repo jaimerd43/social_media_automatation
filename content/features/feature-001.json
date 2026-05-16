@@ -1,12 +1,12 @@
 {
   "id": "feature-001",
-  "title": "Búsqueda de torneos por ubicación",
-  "hook": "Encuentra el próximo torneo de mus cerca de ti en segundos",
+  "title": "Encuetra rival para jugar tu próxima partida de mus",
+  "hook": "Crea una partida de mus en tu bar favorito y encuentra rivales en segundos",
   "key_points": [
-    "Filtra torneos por distancia y ciudad",
-    "Ve plazas disponibles en tiempo real",
-    "Inscríbete con un solo toque"
+    "Crea partidas de mus en tu bar favorito",
+    "Espera a que otros jugadores se unan a tu partida",
+    "Conoce a otros jugadores de mus en tu zona y haz nuevos amigos"
   ],
   "cta": "Descarga Órdago y encuentra tu próximo torneo",
-  "recording": "content/recordings/feature-001.mp4"
+  "recording": "content/recordings/IMG_0044.MOV"
 }

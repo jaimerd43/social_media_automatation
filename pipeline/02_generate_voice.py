@@ -13,7 +13,7 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 ELEVENLABS_API = "https://api.elevenlabs.io/v1"
 

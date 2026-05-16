@@ -16,7 +16,7 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 HEYGEN_API = "https://api.heygen.com"
 HEYGEN_UPLOAD = "https://upload.heygen.com"
@@ -25,12 +25,12 @@ HEYGEN_UPLOAD = "https://upload.heygen.com"
 def upload_audio(api_key: str, audio_path: str) -> str:
     """Sube el MP3 a HeyGen Assets y devuelve el asset_id."""
     url = f"{HEYGEN_UPLOAD}/v1/asset"
-    headers = {"X-Api-Key": api_key}
+    headers = {"X-Api-Key": api_key, "Content-Type": "audio/mpeg"}
 
     with open(audio_path, "rb") as f:
-        files = {"file": (Path(audio_path).name, f, "audio/mpeg")}
-        response = requests.post(url, headers=headers, files=files)
+        data = f.read()
 
+    response = requests.post(url, headers=headers, data=data)
     response.raise_for_status()
     asset_id = response.json()["data"]["id"]
     print(f"  Audio subido: {asset_id}")

@@ -13,7 +13,7 @@ from pathlib import Path
 import anthropic
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 WORDS_PER_SECOND = 2.5  # ritmo de habla en español
 
