@@ -85,18 +85,18 @@ execSync(
   { stdio: "pipe" }
 );
 
-if (isMov) {
-  // Chromium no reproduce .MOV de forma fiable → convertir a H.264 mp4.
-  // ffmpeg 8.x aplica automáticamente la rotación del Display Matrix del iPhone,
-  // por lo que NO se necesita -vf transpose. El vídeo de salida ya es portrait.
-  console.log("  Convirtiendo .MOV → .mp4 (H.264, portrait auto-corregido)...");
-  execSync(
-    `ffmpeg -i "${resolvedRecording}" -c:v libx264 -preset fast -crf 18 -c:a aac -movflags +faststart "${recordingDest}" -y`,
-    { stdio: "inherit" }
-  );
-} else {
-  fs.copyFileSync(resolvedRecording, recordingDest);
-}
+// Siempre re-encodificamos la grabación a H.264 8-bit 30fps para Chromium.
+// - HEVC 10-bit 60fps (iPhone 17) provoca "trompicones" en el headless browser.
+// - ffmpeg 8.x auto-aplica la rotación del Display Matrix del iPhone (portrait).
+// - -r 30        → convierte a 30 fps para que coincida con la composición Remotion.
+// - -pix_fmt yuv420p → baja de 10-bit a 8-bit (Chromium requiere 8-bit para H.264).
+// - -g 30 -keyint_min 30 → keyframe cada segundo para seeks exactos.
+console.log(`  Preparando grabación${isMov ? " (.MOV → H.264)" : ""}...`);
+execSync(
+  `ffmpeg -i "${resolvedRecording}" -r 30 -c:v libx264 -preset fast -crf 18 -pix_fmt yuv420p -c:a aac -movflags +faststart "${recordingDest}" -y`,
+  { stdio: "inherit" }
+);
+console.log("  Grabación lista.");
 
 // ── 3. Bundle + render ───────────────────────────────────────────────────────
 try {
@@ -120,6 +120,12 @@ try {
     codec: "h264",
     outputLocation: path.resolve(outputPath),
     inputProps,
+    // Aumentamos el timeout: con dos vídeos simultáneos (recording + avatar)
+    // el headless browser necesita más tiempo para cargar y buscar frames.
+    timeoutInMilliseconds: 90000,
+    // Limitamos la concurrencia para evitar que los dos vídeos compitan
+    // por recursos de decodificación en el headless browser.
+    concurrencyPerCpu: 0.5,
     onProgress: ({ progress }) =>
       process.stdout.write(`\r  Render: ${Math.round(progress * 100)}%  `),
   });

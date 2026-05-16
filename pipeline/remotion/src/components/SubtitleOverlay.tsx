@@ -48,7 +48,7 @@ export const SubtitleOverlay: React.FC<SubtitleOverlayProps> = ({
       style={{
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: 460,      // encima de la burbuja del avatar y zona CTA
+        paddingBottom: 370,      // encima de la burbuja del avatar (bottom 130 + height 210 + margen)
         pointerEvents: "none",
         zIndex: 50,
       }}
