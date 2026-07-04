@@ -148,8 +148,13 @@ De la respuesta (audio en base64 + alignment por carácter):
 `@remotion/bundler` + `@remotion/renderer`):
 
 ```
-npm run render -- data/episodios.json
+npm run render:jugadas -- data/episodios.json
 ```
+
+(Se usa el nombre `render:jugadas` en vez de `render` a secas para no
+chocar con el script `render` ya existente, que renderiza la
+composición `Reel` con una firma de argumentos distinta —
+`<script.json> <avatar.mp4> <recording.mp4> <output.mp4>`.)
 
 Por cada `Jugada`: valida que existan `public/audio/{id}.mp3` y
 `data/{id}.timestamps.json` (si faltan, avisa y sugiere correr
