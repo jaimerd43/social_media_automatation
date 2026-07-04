@@ -61,8 +61,8 @@ def main():
         "python3", "pipeline/03_generate_avatar.py", script_path, voice_path,
     ])
 
-    step("4/4  Renderizando Reel (Remotion)", [
-        "node", "pipeline/remotion/render.mjs",
+    step("4/4  Renderizando Reel (ffmpeg)", [
+        "python3", "pipeline/04_render_video.py",
         script_path, avatar_path, recording, reel_path,
     ])
 

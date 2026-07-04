@@ -17,3 +17,12 @@ pipeline/remotion/public/recording.mp4
 __pycache__/
 *.pyc
 .venv/
+
+# macOS
+.DS_Store
+
+# Remotion local cache (chrome-headless-shell binary, ~200MB)
+.remotion/
+
+# Grabaciones de pantalla sin editar (input local del pipeline de Reels)
+content/recordings/*.MOV

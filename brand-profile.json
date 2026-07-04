@@ -1,0 +1,108 @@
+{
+  "brand_name": "Órdago",
+  "website": "https://ordago.app",
+  "category": "mobile_app",
+  "description": "App de mus que moderniza la gestión de torneos, ligas y partidas. Centraliza la búsqueda de competiciones, seguimiento en tiempo real y ranking global de jugadores.",
+  "mission": "Profesionalizar y modernizar la gestión de torneos, ligas y partidas de mus mediante herramientas digitales que faciliten la organización, mejoren la experiencia del jugador y den mayor visibilidad al juego.",
+  "vision": "Ser la plataforma de referencia para la comunidad del mus a nivel nacional, conectando jugadores, organizadores y competiciones en un único ecosistema digital.",
+  "taglines": [
+    "Conecta tu pasión por el mus.",
+    "El mus, ahora más conectado que nunca.",
+    "Juega, compite y organiza torneos y partidas de mus desde un solo lugar.",
+    "La plataforma digital para la comunidad del mus.",
+    "Donde el mus se encuentra, compite y crece."
+  ],
+  "primary_tagline": "Conecta tu pasión por el mus.",
+  "values": ["Transparencia", "Ambición", "Comunidad", "Tradición", "Accesibilidad"],
+  "voice": {
+    "adjectives": ["Profesional", "Cercano", "Ambicioso"],
+    "style": "Claro, directo y fácil de entender. Combina modernidad con la esencia tradicional del mus.",
+    "avoid": [
+      "Mensajes excesivamente técnicos, fríos o corporativos",
+      "Presentar el mus como algo anticuado",
+      "Comunicación agresiva enfocada solo en ganar",
+      "Promesas exageradas como 'revolucionar el mus para siempre'",
+      "Parecer una app genérica de eventos o rankings"
+    ]
+  },
+  "target_audience": [
+    {
+      "segment": "Jugadores competitivos",
+      "description": "Participantes habituales de torneos y ligas que buscan una experiencia profesional con rankings, estadísticas y resultados verificados"
+    },
+    {
+      "segment": "Jugadores habituales",
+      "description": "Personas que ya saben jugar al mus y quieren encontrar partidas y rivales fácilmente"
+    },
+    {
+      "segment": "Organizadores de torneos",
+      "description": "Clubes, bares, asociaciones, federaciones o particulares que organizan torneos de mus y necesitan herramientas de gestión digital"
+    }
+  ],
+  "primary_audience": {
+    "age_range": "25-65",
+    "location": "España",
+    "interests": ["mus", "cartas", "torneos", "bares y tabernas", "deportes de competición", "juegos de mesa"],
+    "pain_points": [
+      "Difícil encontrar partidas y torneos cerca",
+      "Sin plataforma centralizada para gestionar competiciones",
+      "Falta de rankings y estadísticas oficiales",
+      "Proceso de inscripción en torneos complicado"
+    ]
+  },
+  "colors": {
+    "primary": "#046A3C",
+    "primary_name": "Verde Tapete",
+    "palette": {
+      "verde_tapete": "#046A3C",
+      "verde_activo": "#059454",
+      "verde_oscuro": "#012214",
+      "verde_claro": "#6CC56F",
+      "verde_suave": "#D0FCB3",
+      "beige_calido": "#DAC78B",
+      "dorado_suave": "#C8AD55",
+      "marron_dorado": "#746125",
+      "amarillo_dorado": "#FFBF00",
+      "granate": "#943852",
+      "granate_oscuro": "#732C40",
+      "coral_rojo": "#FE5F55",
+      "verde_brillante": "#07C56F",
+      "blanco": "#FFFFFF",
+      "negro": "#000000"
+    }
+  },
+  "typography": {
+    "ios": "San Francisco",
+    "android": "Roboto",
+    "documents": "Arial"
+  },
+  "visual_style": {
+    "direction": "Combina apariencia profesional y corporativa con estética tradicional y cálida ligada al mundo del mus. Moderno y fiable como plataforma digital, con la esencia social y clásica del juego.",
+    "inspirations": ["Tapete verde", "Madera", "Naipes", "Mesas de juego", "Medallas", "Escudos", "Taberna tradicional"],
+    "mood": "Espacio serio, bien elaborado y competitivo, pero cercano y social. Mix entre plataforma de torneos moderna y ambiente clásico de taberna o club donde se juega al mus.",
+    "recommended_visuals": [
+      "Fondos de tapete verde",
+      "Texturas de madera sutiles",
+      "Detalles dorados para medallas, premios y rankings",
+      "Fondos beige/crema para piezas editoriales",
+      "Iconografía limpia y funcional",
+      "Composiciones ordenadas con buena jerarquía",
+      "Elementos gráficos inspirados en cartas, escudos o torneos",
+      "Fotos de mesas, jugadores, bares, clubes y competiciones"
+    ],
+    "avoid_visuals": [
+      "Estética de casino o apuestas",
+      "Fondos excesivamente oscuros o recargados",
+      "Tipografías difíciles de leer",
+      "Apariencia excesivamente tecnológica o fría"
+    ]
+  },
+  "keywords": ["mus", "comunidad", "jugadores", "organizadores", "torneos", "ligas", "partidas", "ranking", "resultados", "bar", "taberna", "estadísticas", "competición", "conexión", "crecimiento", "tradición", "innovación"],
+  "logo_versions": [
+    "Horizontal sin fondo (uso principal)",
+    "Isotipo sin fondo (iconos, avatares, favicons)",
+    "Isotipo sobre fondo verde tapete (icono app, redes sociales)",
+    "Horizontal sobre fondo verde tapete real (banners, materiales de torneo)",
+    "Horizontal variante sobre fondo verde tapete (composiciones alternativas)"
+  ]
+}
